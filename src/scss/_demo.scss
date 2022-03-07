@@ -1,0 +1,14 @@
+.news-list{
+  display: flex;
+  flex-wrap: wrap;
+  .news-item{
+    margin: 10px;
+    width: calc(25% - 20px);
+    @include breakpoint(max-width $pad-width){
+      width: calc(50% - 20px);
+    }
+    @include breakpoint(max-width $mobile-width){
+      width: calc(100% - 20px);
+    }
+  }
+}

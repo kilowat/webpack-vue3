@@ -1,0 +1,41 @@
+@import "boot";
+
+$font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Open Sans", "Helvetica Neue", sans-serif;
+
+@font-face {
+  font-display: swap;
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+body {
+  font-family: $font-stack;
+  line-height: $base-line-height;
+}
+.container{
+  max-width: $container-max-width;
+  min-width: $container-min-width;
+  margin: auto;
+  padding-left: $container-padding;
+  padding-right: $container-padding;
+
+  @include breakpoint(max-width $pad-width){
+    padding-left: $container-padding-pad;
+    padding-right: $container-padding-pad;
+  }
+}
+
+main {
+  display: flex;
+  min-height: calc(100vh - #{$footer-height});
+}
+.content{
+  width: 100%;
+  &.with-sidebar{
+    width: calc(100% - #{$sidebar-left});
+    @include breakpoint(max-width $desktop-width){
+      width: 100%;
+    }
+  }
+}
