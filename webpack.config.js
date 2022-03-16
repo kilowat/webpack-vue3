@@ -49,9 +49,12 @@ const config = {
   },
   devtool: isDev ? "source-map" : false,
   mode: isDev ? "development" : "production",
+  target: 'web',
   optimization: {
     minimize: !isDev,
-    runtimeChunk: 'single',
+    runtimeChunk: {
+      name: 'runtime',
+    },
     minimizer: [
       new TerserPlugin({
         extractComments: true,
@@ -60,6 +63,16 @@ const config = {
         },
       })
     ],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "./dist/"),
+    },
+    host: 'localhost',
+    devMiddleware: {
+      writeToDisk: true,
+    },
+    port: 9000
   },
   resolve: {
     extensions: ['.js', '.vue'],
@@ -127,17 +140,6 @@ const config = {
         }]
       }
     ]
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "./dist/"),
-    },
-    host: 'localhost',
-    devMiddleware: {
-      writeToDisk: false,
-    },
-    compress: true,
-    port: 9000
   },
   plugins: [
     new VueLoaderPlugin(),

@@ -8,20 +8,10 @@
   }
 %>
 <%= _.template(require('./../includes/header.html').default)(data) %>
-
-  <section>
-    <h2>Список</h2>
-    <div class="news-list">
-      <%for(var i=0; i<8; i++){%>
-      <div class="news-item">
-        <div class="item-name"><b><%=news.name+" "+i%></b></div>
-        <div class="item-text"><%=news.text%></div>
-      </div>
-      <%}%>
-    </div>
-  </section>
-
-  <section>
+  <div class="main-slider">
+    <full-slider></full-slider>
+  </div>
+  <div>
     <h2>Спрайты svg:</h2>
     <svg class="svg-icon">
       <use xlink:href="<%=htmlWebpackPlugin.options.svgPath%>#sprite-pencil"></use>
@@ -29,14 +19,6 @@
     <svg class="svg-icon">
       <use xlink:href="<%=htmlWebpackPlugin.options.svgPath%>#sprite-freebsd"></use>
     </svg>
-  </section>
-  <section>
-    <h2>Vue Компонент</h2>
-    <example-component></example-component>
-  </section>
-  <section>
-    <h2>Vue lazy component</h2>
-    <lazy-example-component></lazy-example-component>
-  </section>
+  </div>
 
 <%= _.template(require('./../includes/footer.html').default)(data) %>
