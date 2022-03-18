@@ -1,12 +1,12 @@
-
-import { defineAsyncComponent } from 'vue';
-import FloatMenu from '@/components/utils/FloatMenu';
+import { defineAsyncComponent } from "vue";
+import FloatMenu from "@/components/utils/FloatMenu";
+import SmallBasket from '@/components/shared/SmallBasket';
 const FullSlider = defineAsyncComponent(() =>
-  import('@/components/sliders/FullSlider.vue')
-)
+  import("@/components/sliders/FullSlider.vue")
+);
 
-export default  
-{
-    FloatMenu,
-    FullSlider,
+export default {
+  FloatMenu,
+  FullSlider,
+  SmallBasket,
 };

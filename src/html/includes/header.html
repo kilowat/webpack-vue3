@@ -22,14 +22,14 @@
   <body>
     <div id="app">
       <header class="header">
-          <div class="container">
-              <img src="/img/logo.svg" height="100" width="100" alt="logo" id="logo" />
-          </div>
+        <div class="container">
+          <img src="/img/logo.svg" height="100" width="100" alt="logo" id="logo" />
+        </div>
       </header>
       <main class="container">
-          <%if(show_sidebar){%>
-            <aside class="sidebar-left">
-                <%=sidebar_html%>
-            </aside>
-          <%}%>
-          <div class="content <%if(show_sidebar){%>with-sidebar<%}%>">
+        <%if(show_sidebar){%>
+          <aside class="sidebar-left">
+              <%=sidebar_html%>
+          </aside>
+        <%}%>
+        <div class="content <%if(show_sidebar){%>with-sidebar<%}%>">

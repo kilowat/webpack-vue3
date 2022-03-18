@@ -5,10 +5,4 @@ const app = createApp({
   components
 });
 
-/*
-components.forEach(component => {
-  console.log(component);
-  app.component(component.name, component)
-})
-*/
 app.mount('#app')
