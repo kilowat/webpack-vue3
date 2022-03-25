@@ -1,11 +1,4 @@
-@import 'icons';
-@import "variables";
-@import "~normalize.css";
-@import "~breakpoint-sass";
-@import "header";
-@import "footer";
-@import "fonts";
-
+@import "boot";
 $font-stack: -apple-system, BlinkMacSystemFont, Roboto, "Open Sans", "Helvetica Neue", sans-serif;
 
 body {
