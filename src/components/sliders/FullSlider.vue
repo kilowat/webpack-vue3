@@ -1,5 +1,4 @@
 <script setup>
-
 import { onMounted, ref } from "@vue/runtime-core";
 import Swiper, { Navigation, Pagination } from "swiper";
 import "swiper/css";
@@ -24,7 +23,6 @@ const sliderInit = (rootEl) => {
 onMounted(() => {
   sliderInit(slider.value);
 });
-
 </script>
 
 <template>
