@@ -12,7 +12,6 @@ const { resolve } = require("path");
 const templateName = path.resolve(__dirname, '..').split(path.sep).pop();
 /*sprites path settings*/
 const svgPath = '/sprites/spritemap.svg';
-
 /*****************************************/
 
 function generateHtmlPlugins(templateDir) {
@@ -25,36 +24,37 @@ function generateHtmlPlugins(templateDir) {
       filename: `${name}.html`,
       template: path.resolve(__dirname, `${templateDir}/${name}.${extension}`),
       inject: false,
-      svgPath: svgPath
+      svgPath: svgPath,
+      minify: {
+        removeComments: false,
+        collapseWhitespace: false,
+      },
     });
   });
 }
 
-
 const htmlPlugins = generateHtmlPlugins("./src/html/views");
 
 const config = {
+  target:'web',
   entry: {
     main: ["./src/js/main.js", "./src/scss/main.scss"],
   },
   output: {
     filename: "./js/[name].bundle.js",
     clean: true,
+    path: path.resolve(__dirname, 'dist'),
+    chunkFilename: 'js/[name]_[contenthash].js',
     //Ниже настройки для cms,
     //Путь куда билдить файлы в шаблон CMS
     //publicPath : `/local/templates/${templateName}/assets/dist/`,
     //Создёт чанк с названием префикс_Хеш, для формирования Preload Link.
     //Нужен php скрипт, который по префиксу name будет получить путь до чанка и в head вставлять preload ссылку до чанка.
-    //chunkFilename: 'js/[name]_[contenthash].js',
   },
   devtool: isDev ? "source-map" : false,
   mode: isDev ? "development" : "production",
-  target: 'web',
   optimization: {
     minimize: !isDev,
-    runtimeChunk: {
-      name: 'runtime',
-    },
     minimizer: [
       new TerserPlugin({
         extractComments: true,
@@ -65,12 +65,13 @@ const config = {
     ],
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, "./dist/"),
-    },
     host: 'localhost',
+    watchFiles: ['src/**/*'],
     devMiddleware: {
-      writeToDisk: true,
+      writeToDisk: false,
+    },
+    static: {
+      directory: path.join(__dirname, 'dist'),
     },
     port: 9000
   },
@@ -84,6 +85,13 @@ const config = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use:{
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.vue$/,
         use: [{
@@ -170,7 +178,8 @@ const config = {
         }
       ]
     }),
-  ].concat(htmlPlugins)
+    ...htmlPlugins,
+  ],
 };
 
 if (!isDev) {

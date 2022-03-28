@@ -4,7 +4,7 @@
   "description": "HTML template",
   "main": "src/index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack serve --mode development --open",
+    "start": "cross-env NODE_ENV=development webpack serve --mode development --open ",
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "prod": "cross-env NODE_ENV=production webpack --mode production && prettier --print-width=120 --parser html --write dist/*.html",
     "watch": "cross-env NODE_ENV=development webpack --mode development --watch",
@@ -18,8 +18,10 @@
     "vue": "^3.2.31"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
     "@vue/compiler-sfc": "^3.2.31",
-    "clean-webpack-plugin": "^4.0.0",
+    "babel-loader": "^8.2.4",
     "compression-webpack-plugin": "^9.2.0",
     "copy-webpack-plugin": "^10.2.4",
     "cross-env": "^7.0.3",

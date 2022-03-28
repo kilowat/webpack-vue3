@@ -5,6 +5,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+const slides = [
+  {
+    id: 1,
+    src: "/uploads/slide-1.png",
+  },
+  {
+    id: 2,
+    src: "/uploads/slide-1.png",
+  }
+];
+
 Swiper.use([Navigation, Pagination]);
 const slider = ref(null);
 const sliderInit = (rootEl) => {
@@ -20,24 +31,30 @@ const sliderInit = (rootEl) => {
   });
 };
 
+
 onMounted(() => {
   sliderInit(slider.value);
 });
+
 </script>
 
 <template>
   <div class="swiper full-slider" ref="slider">
     <div class="swiper-wrapper">
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
+      <div class="swiper-slide" v-for="slide in slides" :key="slide.id">
+        <img class="img-slide" :src="slide.src" alt="">
+      </div>
     </div>
-
     <div class="swiper-pagination"></div>
-
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
   </div>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+  .img-slide{
+    object-fit: cover;
+    height: 600px;
+    max-width: 100%;
+  }
+</style>

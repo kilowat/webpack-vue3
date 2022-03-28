@@ -6,9 +6,8 @@ onMounted(() => {
   basket.init();
 });
 
- const items = basket.items;
 </script>
 
 <template>
-  <div>basket items: {{ items }}</div>
+  <div>basket items: {{ basket.items }}</div>
 </template>
