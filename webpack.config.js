@@ -58,6 +58,7 @@ const config = {
     minimizer: [
       new TerserPlugin({
         extractComments: true,
+        parallel: false,
         terserOptions: {
           sourceMap: isDev,
         },
@@ -66,7 +67,7 @@ const config = {
   },
   devServer: {
     host: 'localhost',
-    watchFiles: ['src/**/*'],
+    watchFiles: ['src/**'],
     devMiddleware: {
       writeToDisk: false,
     },
