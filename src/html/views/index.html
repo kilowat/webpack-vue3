@@ -8,16 +8,10 @@
   }
 %>
 <%= _.template(require('./../includes/header.html').default)(data) %>
-  
+  <div class="main-slider">
+    <full-slider></full-slider>
+  </div>
   <div>
-    <div v-scope="Counter({ initialCount: 1 })" @vue:mounted="mounted">
-      <p>{{ count }}</p>
-      <button @click="inc">increment</button>
-    </div>
-    <div v-scope>
-      <p>Global {{ basket.count }}</p>
-      <button @click="basket.inc">increment</button>
-    </div>
     <h2>Спрайты svg:</h2>
     <svg class="svg-icon">
       <use xlink:href="<%=htmlWebpackPlugin.options.svgPath%>#sprite-pencil"></use>

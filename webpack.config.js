@@ -3,12 +3,13 @@ const fs = require("fs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { VueLoaderPlugin } = require('vue-loader');
+const isDev = process.env.NODE_ENV === 'development';
 const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const { resolve } = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const { resolve } = require("path");
 const templateName = path.resolve(__dirname, '..').split(path.sep).pop();
-const isDev = process.env.NODE_ENV === 'development';
 /*sprites path settings*/
 const svgPath = '/sprites/spritemap.svg';
 /*****************************************/
@@ -76,10 +77,11 @@ const config = {
     port: 9000
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.js', '.vue'],
     modules: ["node_modules"],
     alias: {
       '@': resolve('src'),
+      vue : "vue/dist/vue.esm-bundler.js",
     }
   },
   module: {
@@ -97,6 +99,13 @@ const config = {
             ]
           }
         },
+      },
+      {
+        test: /\.vue$/,
+        use: [{
+          loader: 'vue-loader'
+        }],
+        include: path.resolve(__dirname, "src/components")
       },
       {
         test: /\.(css|sass|scss)$/,
@@ -149,6 +158,7 @@ const config = {
     ]
   },
   plugins: [
+    new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].bundle.css",
     }),
@@ -161,6 +171,10 @@ const config = {
       patterns: [{
           from: "./src/fonts",
           to: "./fonts"
+        },
+        {
+          from: "./src/favicon",
+          to: "./favicon"
         },
         {
           from: "./src/img",
@@ -189,7 +203,7 @@ if (!isDev) {
 
 module.exports = (env, argv) => {
   if (argv.mode === "production") {
-    //to do something
+
   }
   return config;
 };
