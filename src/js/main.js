@@ -1,8 +1,9 @@
-import components from '@/components';
-import { createApp } from 'vue';
 
-const app = createApp({
-  components
-});
-
-app.mount('#app')
+ import { createApp } from 'petite-vue'
+import components from './components'
+import store from './store'
+ const app = {
+   ...store,
+   ...components
+ }
+ createApp(app).mount('#app')

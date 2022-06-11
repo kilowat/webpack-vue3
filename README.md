@@ -1,5 +1,5 @@
-# Сборка webpack для простой верстки.
-## Команды:
+# Webpack tools for web desing with petite-vue
+## Commands:
 + npm run dev - development
 + npm run prod - production
 + npm run start - start webserver on develop and watch

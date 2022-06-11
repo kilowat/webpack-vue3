@@ -1,17 +1,14 @@
-import { computed, reactive } from "vue";
+import { reactive } from 'petite-vue'
 
-const state = reactive({
-  items: [],
-});
+  const basket = reactive({
+    count: 0,
+    inc() {
+      this.count++
+    }
+  })
 
-function add(item) {
-  state.items.push(item);
-}
-
-function getById(id) {
-  return state.items.filter((item) => item.id === id);
-}
-
+  export default basket;
+/*
 async function init() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -21,11 +18,5 @@ async function init() {
     }, 1000)
   })
 }
+*/
 
-export default {
-  items: computed(() => state.items),
-  count: computed(() => state.items.length),
-  getById,
-  add,
-  init,
-};
