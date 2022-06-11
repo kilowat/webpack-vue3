@@ -1,4 +1,4 @@
-# Webpack tools for web desing with petite-vue
+# Webpack tools for web desing with petite-vue.
 ## Commands:
 + npm run dev - development
 + npm run prod - production
