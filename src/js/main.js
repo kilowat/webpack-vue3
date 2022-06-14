@@ -1,8 +1,14 @@
 import components from '@/components';
 import { createApp } from 'vue';
 
-const app = createApp({
+const vapp = createApp({
   components
 });
 
-app.mount('#app')
+vapp.mount('#app')
+window.vapp = vapp;
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+
+});
+
